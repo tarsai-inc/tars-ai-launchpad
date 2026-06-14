@@ -97,3 +97,73 @@
     background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(var(--primary) / 0.06), transparent);
   }
 }
+
+/* Privacy Notice page — styles the HTML fragment rendered from the verified
+   public notice. Scoped to .privacy-content; uses theme tokens so it matches
+   the site. */
+.privacy-content {
+  color: hsl(var(--foreground) / 0.88);
+  line-height: 1.7;
+  font-size: 1rem;
+}
+.privacy-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0 0 0.5rem;
+  color: hsl(var(--foreground));
+}
+.privacy-content h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 2rem 0 0.6rem;
+  padding-bottom: 0.3rem;
+  border-bottom: 1px solid hsl(var(--border));
+  color: hsl(var(--foreground));
+}
+.privacy-content p {
+  margin: 0.75rem 0;
+}
+.privacy-content ul {
+  margin: 0.5rem 0 1rem;
+  padding-left: 1.4rem;
+  list-style: disc;
+}
+.privacy-content li {
+  margin: 0.3rem 0;
+}
+.privacy-content strong {
+  color: hsl(var(--foreground));
+  font-weight: 600;
+}
+.privacy-content a {
+  color: hsl(var(--primary));
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.privacy-content a:hover {
+  opacity: 0.85;
+}
+.privacy-content hr {
+  border: 0;
+  border-top: 1px solid hsl(var(--border));
+  margin: 1.25rem 0;
+}
+.privacy-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.95rem;
+}
+.privacy-content th,
+.privacy-content td {
+  border: 1px solid hsl(var(--border));
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+.privacy-content th {
+  background: hsl(var(--surface));
+  font-weight: 600;
+  color: hsl(var(--foreground));
+}

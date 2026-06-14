@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import tarsLogo from "@/assets/tars-logo.png";
 
 const Footer = () => {
@@ -39,6 +40,14 @@ const Footer = () => {
                   </a>
                 </li>
               ))}
+              <li>
+                <Link
+                  to="/privacy"
+                  className="text-muted-foreground text-xs hover:text-foreground transition-colors"
+                >
+                  Privacy
+                </Link>
+              </li>
             </ul>
           </div>
 
