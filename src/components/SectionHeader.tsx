@@ -30,7 +30,7 @@ const SectionHeader = ({ index, label, title, lede }: SectionHeaderProps) => (
       initial="hidden"
       whileInView="show"
       viewport={viewportOnce}
-      className="font-display text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.08] text-foreground max-w-3xl"
+      className="font-display text-3xl sm:text-4xl md:text-[2.75rem] leading-[1.24] text-foreground max-w-3xl"
     >
       {title}
     </m.h2>

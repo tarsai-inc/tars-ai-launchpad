@@ -42,9 +42,6 @@ const Hero = () => {
         <span className="absolute top-[22%] right-[8%]">+</span>
         <span className="absolute top-[58%] right-[22%]">+</span>
         <span className="absolute top-[76%] left-[46%]">+</span>
-        <span className="absolute bottom-[16%] right-[7%] voice-label text-[0.575rem] text-faint/70 tracking-[0.2em]">
-          GRID REF · 30.2672 N / 97.7431 W
-        </span>
       </div>
 
       <div className="container relative z-10 pt-36 pb-0 flex-1 flex flex-col justify-center">

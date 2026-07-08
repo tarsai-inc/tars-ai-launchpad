@@ -4,8 +4,8 @@ import Wordmark from "@/components/Wordmark";
 const NotFound = () => (
   <div className="min-h-screen bg-background flex items-center justify-center px-6">
     <div className="corner-ticks border border-line p-10 md:p-14 max-w-md w-full text-center">
-      <div className="text-lg mb-8 flex justify-center">
-        <Wordmark />
+      <div className="mb-8 flex justify-center">
+        <Wordmark className="h-8" />
       </div>
       <p className="font-mono-ui text-xs text-primary tracking-[0.2em] mb-3">ERR · 404</p>
       <h1 className="font-display text-2xl text-foreground mb-3">Route not found.</h1>

@@ -104,7 +104,7 @@ const Scale = () => (
           ))}
         </div>
         <p className="mt-8 text-dim leading-relaxed max-w-2xl">
-          Every depot TARS runs feeds the same telemetry, follows the same procedures, and reports
+          Every TARS depot feeds the same telemetry, follows the same procedures, and reports
           the same metrics. Cross-city consistency isn't an aspiration — it's the architecture.
         </p>
       </m.div>

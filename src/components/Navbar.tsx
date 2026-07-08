@@ -55,8 +55,8 @@ const Navbar = () => {
         aria-hidden="true"
       />
       <nav className="container flex items-center justify-between h-16" aria-label="Main">
-        <a href="#top" onClick={(e) => go(e, "#top")} className="text-[1.05rem]" aria-label="TARS — home">
-          <Wordmark />
+        <a href="#top" onClick={(e) => go(e, "#top")} aria-label="TARS — home">
+          <Wordmark className="h-9" />
         </a>
 
         {/* Desktop */}

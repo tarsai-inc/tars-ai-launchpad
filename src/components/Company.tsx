@@ -4,14 +4,14 @@ import { rise, viewportOnce } from "@/lib/motion";
 
 const FOUNDERS = [
   {
-    name: "Arun Arunagiri",
-    role: "Co-Founder · CEO",
+    name: "Arunkumar Arunagiri",
+    role: "Co-Founder · Co-CEO",
     bio: "AV product leader. Built fleet deployment platforms and the operational tooling behind autonomous vehicle programs, including the launch of the Cruise Origin.",
     tags: ["Cruise", "AV fleet deployment"],
   },
   {
-    name: "Sheik Fazulul Haque",
-    role: "Co-Founder · COO",
+    name: "Fazulul Haque Sheik",
+    role: "Co-Founder · Co-CEO",
     bio: "Operations leader from Tesla service. Scaled service operations across 250+ locations nationwide — the discipline TARS installs on every depot floor.",
     tags: ["Tesla", "250+ service locations"],
   },

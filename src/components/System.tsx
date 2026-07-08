@@ -21,7 +21,7 @@ const LAYERS = [
     id: "L1",
     name: "Day-one operators",
     body:
-      "Trained crews arrive with the platform and run the depot at standard from the first shift. Not a staffing agency — an operating capability that carries the playbook, the tooling, and the accountability for the numbers.",
+      "Trained crews arrive with the platform and run the depot at standard from the first shift — an operating capability that carries the playbook, the tooling, and the accountability for the numbers.",
     points: ["Certified on AV ground procedures", "Deployed with the software", "Accountable to fleet-level SLAs"],
   },
 ];

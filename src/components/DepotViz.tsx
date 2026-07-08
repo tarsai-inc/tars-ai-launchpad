@@ -107,7 +107,30 @@ interface SimEvent {
   tone: "amber" | "ok" | "blue" | "dim" | "hold";
 }
 
+interface Tech {
+  id: string; // T-01 …
+  x: number;
+  y: number;
+  home: { x: number; y: number };
+  state: "idle" | "toJob" | "work" | "back";
+  target: { x: number; y: number } | null;
+  vehicleId: number | null;
+}
+
+const CREW_HOME_Y = 420;
+const makeTechs = (): Tech[] =>
+  Array.from({ length: 5 }, (_, i) => ({
+    id: `T-0${i + 1}`,
+    x: 872 + i * 24,
+    y: CREW_HOME_Y,
+    home: { x: 872 + i * 24, y: CREW_HOME_Y },
+    state: "idle",
+    target: null,
+    vehicleId: null,
+  }));
+
 const SPEED = 95; // px per sim-second
+const TECH_SPEED = 42; // people walk, machines drive
 const rand = (a: number, b: number) => a + Math.random() * (b - a);
 
 const DepotViz = () => {
@@ -133,6 +156,7 @@ const DepotViz = () => {
 
     const stages = makeStages();
     const vehicles: Vehicle[] = [];
+    const techs = makeTechs();
     let nextId = 200 + Math.floor(Math.random() * 20);
     let simTime = 6 * 3600 + 12 * 60 + 4; // 06:12:04
     let dispatched = 0;
@@ -200,6 +224,43 @@ const DepotViz = () => {
       v.pathT = 0;
     };
 
+    // labor stages get a technician dispatched from the crew pool
+    const assignTech = (v: Vehicle, stage: Stage, bay: Bay) => {
+      const tech = techs.find((t) => t.state === "idle");
+      if (!tech) return;
+      tech.state = "toJob";
+      tech.vehicleId = v.id;
+      tech.target = { x: bay.x + 34, y: bay.y };
+      pushEvent({ t: fmt(simTime), text: `${tech.id} → ${v.callsign} · ${stage.id} bay`, tone: "dim" });
+    };
+
+    const releaseTech = (vehicleId: number) => {
+      const tech = techs.find((t) => t.vehicleId === vehicleId);
+      if (!tech) return;
+      tech.state = "back";
+      tech.vehicleId = null;
+      tech.target = { ...tech.home };
+    };
+
+    const stepTechs = (dt: number) => {
+      for (const t of techs) {
+        if (!t.target) continue;
+        const dx = t.target.x - t.x;
+        const dy = t.target.y - t.y;
+        const dist = Math.hypot(dx, dy);
+        const stepLen = TECH_SPEED * dt;
+        if (dist <= stepLen) {
+          t.x = t.target.x;
+          t.y = t.target.y;
+          t.target = null;
+          t.state = t.state === "toJob" ? "work" : "idle";
+        } else {
+          t.x += (dx / dist) * stepLen;
+          t.y += (dy / dist) * stepLen;
+        }
+      }
+    };
+
     const step = (dt: number) => {
       simTime += dt;
       spawnIn -= dt;
@@ -235,6 +296,9 @@ const DepotViz = () => {
                 v.phase = "service";
                 v.dwellTotal = rand(...stage.dwell);
                 v.dwellLeft = v.dwellTotal;
+                if (stage.id === "detail" || stage.id === "inspect") {
+                  assignTech(v, stage, stage.bays[v.bayIdx!]);
+                }
                 // occasional safety hold at inspect
                 if (stage.id === "inspect" && Math.random() < 0.18) {
                   v.hold = rand(2, 3.5);
@@ -283,6 +347,7 @@ const DepotViz = () => {
                     ? ` · ${Math.floor(rand(38, 44))} checks`
                     : "";
               pushEvent({ t: fmt(simTime), text: `${v.callsign} ${stage.verb}${extra}`, tone });
+              releaseTech(v.id);
               const bay = stage.bays[v.bayIdx!];
               bay.occupant = null;
               v.bayIdx = null;
@@ -299,6 +364,8 @@ const DepotViz = () => {
           }
         }
       }
+
+      stepTechs(dt);
 
       // remove exited
       for (let i = vehicles.length - 1; i >= 0; i--) {
@@ -452,6 +519,39 @@ const DepotViz = () => {
           ctx.fillText(v.callsign, v.x, v.y - 18);
         }
       }
+
+      // crew pool + technicians (people are circles; machines are rects)
+      ctx.fillStyle = C.faint;
+      ctx.font = "10px 'IBM Plex Mono', monospace";
+      ctx.textAlign = "right";
+      ctx.fillText("CREW", 856, CREW_HOME_Y + 3);
+      for (const t of techs) {
+        // vacated home slot marker
+        if (t.x !== t.home.x || t.y !== t.home.y) {
+          ctx.strokeStyle = C.lineSoft;
+          ctx.setLineDash([2, 3]);
+          ctx.beginPath();
+          ctx.arc(t.home.x, t.home.y, 5, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.setLineDash([]);
+        }
+        const active = t.state !== "idle";
+        ctx.fillStyle = "hsla(217, 24%, 10%, 1)";
+        ctx.strokeStyle = active ? C.amber : C.bodyDim;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(t.x, t.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = active ? C.amber : C.bodyDim;
+        ctx.fillRect(t.x - 1, t.y - 1, 2, 2);
+        if (scale > 0.55 && t.state === "work") {
+          ctx.fillStyle = C.faint;
+          ctx.font = "8px 'IBM Plex Mono', monospace";
+          ctx.textAlign = "center";
+          ctx.fillText(t.id, t.x, t.y - 10);
+        }
+      }
     };
 
     const syncReact = () => {
@@ -530,12 +630,12 @@ const DepotViz = () => {
           label="Command"
           title={
             <>
-              Every vehicle. Every bay.
+              Every vehicle. Every bay. Every crew.
               <br />
               <span className="text-dim">One command surface.</span>
             </>
           }
-          lede="This is how TARS sees a depot: a controlled system, not a parking lot. Vehicles move through charge, detail, inspection, and staging on system-issued tasks — every step verified before dispatch."
+          lede="This is how TARS sees a depot: a controlled system, not a parking lot. Vehicles move through charge, cleaning, inspection, and staging on system-issued tasks — each routed to a certified technician, every step verified before dispatch."
         />
 
         <div className="corner-ticks border border-line bg-ink-deep">
@@ -544,6 +644,7 @@ const DepotViz = () => {
             <span className="inline-block w-2 h-2 bg-ok animate-signal" aria-hidden="true" />
             <span className="voice-label text-foreground">Depot 07 — Live orchestration</span>
             <span className="hidden md:inline voice-label text-faint">Shift B</span>
+            <span className="hidden md:inline voice-label text-faint">Crew 05</span>
             <span className="flex-1" />
             <span className="font-mono-ui text-xs text-dim tabular-nums" aria-hidden="true">{clock}</span>
           </div>
@@ -555,7 +656,7 @@ const DepotViz = () => {
                 <canvas
                   ref={canvasRef}
                   role="img"
-                  aria-label="Animated schematic of a TARS-run depot: autonomous vehicles moving through intake, charging, detailing, inspection, and staging bays before dispatch"
+                  aria-label="Animated schematic of a TARS-run depot: autonomous vehicles moving through intake, charging, cleaning, inspection, and staging bays before dispatch"
                   className="block w-full"
                 />
               </div>
