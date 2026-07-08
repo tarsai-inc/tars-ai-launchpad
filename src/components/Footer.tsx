@@ -12,8 +12,8 @@ const Footer = () => {
       <div className="container py-14">
         <div className="flex flex-col md:flex-row md:items-start justify-between gap-10">
           <div className="max-w-xs">
-            <div className="text-lg mb-4">
-              <Wordmark />
+            <div className="mb-4">
+              <Wordmark className="h-7" />
             </div>
             <p className="text-faint text-sm leading-relaxed">
               The operating layer for autonomous fleets — software, playbooks, and

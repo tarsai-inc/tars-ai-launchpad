@@ -58,9 +58,7 @@ const TypeLab = () => (
   <div className="min-h-screen bg-background py-16">
     <div className="container">
       <div className="flex items-center gap-4 mb-4">
-        <span className="text-base">
-          <Wordmark />
-        </span>
+        <Wordmark className="h-6" />
         <span className="voice-label text-faint">Type lab · internal · section-title candidates</span>
       </div>
       <p className="text-dim text-sm max-w-xl mb-14">
