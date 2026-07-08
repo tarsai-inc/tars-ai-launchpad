@@ -45,13 +45,13 @@ const Footer = () => {
             <div className="voice-label text-faint mb-3">Connect</div>
             <ul className="space-y-2">
               <li>
-                <a href="mailto:contact@tarsgroup.co" className="font-mono-ui text-xs text-dim hover:text-foreground transition-colors">
-                  contact@tarsgroup.co
+                <a href="mailto:contact@tarsai.co" className="font-mono-ui text-xs text-dim hover:text-foreground transition-colors">
+                  contact@tarsai.co
                 </a>
               </li>
               <li>
                 <a
-                  href="https://linkedin.com/company/tarsgroup"
+                  href="https://www.linkedin.com/company/tarsai-co"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="font-mono-ui text-xs text-dim hover:text-foreground transition-colors"

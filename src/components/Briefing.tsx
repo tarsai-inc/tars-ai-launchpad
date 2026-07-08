@@ -42,7 +42,7 @@ const Briefing = () => {
               <span className="text-dim">or preparing to?</span>
             </>
           }
-          lede="TARS deploys with a limited number of fleet operators per market. Request a briefing and we'll walk your team through the operating model, the economics, and what day one looks like."
+          lede="TARS is engaging its first wave of fleet operators now. Request a briefing and we'll walk your team through the operating model, the economics, and what day one looks like."
         />
 
         <div className="grid lg:grid-cols-[1fr_1.2fr] gap-14 lg:gap-20">
@@ -52,8 +52,8 @@ const Briefing = () => {
               <div>
                 <dt className="voice-label text-faint mb-2">Direct</dt>
                 <dd>
-                  <a href="mailto:contact@tarsgroup.co" className="font-mono-ui text-sm text-foreground hover:text-primary transition-colors">
-                    contact@tarsgroup.co
+                  <a href="mailto:contact@tarsai.co" className="font-mono-ui text-sm text-foreground hover:text-primary transition-colors">
+                    contact@tarsai.co
                   </a>
                 </dd>
               </div>
@@ -124,7 +124,7 @@ const Briefing = () => {
                 </button>
                 {error && (
                   <p className="font-mono-ui text-xs text-destructive" role="alert">
-                    Something went wrong. Email us directly at contact@tarsgroup.co.
+                    Something went wrong. Email us directly at contact@tarsai.co.
                   </p>
                 )}
               </form>
