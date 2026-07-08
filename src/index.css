@@ -90,8 +90,8 @@
   /* type voices */
   .font-display {
     font-family: "Archivo Variable", system-ui, sans-serif;
-    font-variation-settings: "wdth" 97;
-    letter-spacing: -0.03em;
+    font-variation-settings: "wdth" 100;
+    letter-spacing: -0.015em;
   }
   .font-mono-ui {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
