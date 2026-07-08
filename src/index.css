@@ -1,5 +1,5 @@
 @import "@fontsource-variable/archivo/wdth.css";
-@import "@fontsource-variable/space-grotesk";
+@import "@fontsource-variable/geist";
 @import "@fontsource/ibm-plex-mono/400.css";
 @import "@fontsource/ibm-plex-mono/500.css";
 
@@ -90,9 +90,9 @@
 @layer utilities {
   /* type voices */
   .font-display {
-    font-family: "Space Grotesk Variable", system-ui, sans-serif;
-    font-variation-settings: "wght" 500;
-    letter-spacing: -0.01em;
+    font-family: "Geist Variable", system-ui, sans-serif;
+    font-variation-settings: "wght" 530;
+    letter-spacing: -0.015em;
   }
   .font-mono-ui {
     font-family: "IBM Plex Mono", ui-monospace, monospace;
