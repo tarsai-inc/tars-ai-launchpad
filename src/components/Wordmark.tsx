@@ -6,8 +6,12 @@ interface WordmarkProps {
 const Wordmark = ({ className = "" }: WordmarkProps) => (
   <span className={`inline-flex items-baseline select-none ${className}`}>
     <span
-      className="font-display text-foreground leading-none"
-      style={{ fontVariationSettings: '"wdth" 108, "wght" 640', letterSpacing: "0.06em" }}
+      className="text-foreground leading-none"
+      style={{
+        fontFamily: '"Archivo Variable", system-ui, sans-serif',
+        fontVariationSettings: '"wdth" 108, "wght" 640',
+        letterSpacing: "0.06em",
+      }}
     >
       TARS
     </span>
