@@ -8,12 +8,14 @@ const FOUNDERS = [
     role: "Co-Founder · Co-CEO",
     bio: "AV product leader. Built fleet deployment platforms and the operational tooling behind autonomous vehicle programs, including the launch of the Cruise Origin.",
     tags: ["Cruise", "AV fleet deployment"],
+    linkedin: "https://www.linkedin.com/in/arunkumararunagiri/",
   },
   {
     name: "Fazulul Haque Sheik",
     role: "Co-Founder · Co-CEO",
     bio: "Operations leader from Tesla service. Scaled service operations across 250+ locations nationwide — the discipline TARS installs on every depot floor.",
     tags: ["Tesla", "250+ service locations"],
+    linkedin: "https://www.linkedin.com/in/fhsheik/",
   },
 ];
 
@@ -54,6 +56,15 @@ const Company = () => (
                 </h3>
                 <p className="voice-label text-faint mt-0.5">{f.role}</p>
               </div>
+              <a
+                href={f.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${f.name} on LinkedIn`}
+                className="ml-auto font-mono-ui text-[0.65rem] uppercase tracking-[0.12em] text-dim hover:text-primary transition-colors shrink-0"
+              >
+                LinkedIn ↗
+              </a>
             </div>
             <p className="text-dim leading-relaxed mb-6">{f.bio}</p>
             <ul className="flex flex-wrap gap-2">
