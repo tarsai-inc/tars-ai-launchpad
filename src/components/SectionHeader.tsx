@@ -20,7 +20,7 @@ const SectionHeader = ({ index, label, title, lede }: SectionHeaderProps) => (
       className="flex items-center gap-4 mb-8 border-b border-line pb-4"
     >
       <span className="font-mono-ui text-xs text-primary">{index}</span>
-      <span className="voice-wide text-[0.625rem] text-dim">{label}</span>
+      <span className="voice-wide text-[0.6875rem] text-foreground">{label}</span>
       <span className="flex-1" />
       <span className="hidden sm:block w-2 h-2 border border-line-strong" aria-hidden="true" />
     </m.div>
