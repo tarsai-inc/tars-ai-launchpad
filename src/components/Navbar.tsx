@@ -34,6 +34,11 @@ const Navbar = () => {
   const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     setMenuOpen(false);
+    // section anchors only exist on the home page
+    if (window.location.pathname !== "/") {
+      window.location.href = `/${href}`;
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 

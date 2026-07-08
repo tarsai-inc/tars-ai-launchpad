@@ -4,6 +4,11 @@ import Wordmark from "./Wordmark";
 const Footer = () => {
   const go = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
+    // section anchors only exist on the home page
+    if (window.location.pathname !== "/") {
+      window.location.href = `/${href}`;
+      return;
+    }
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
   };
 

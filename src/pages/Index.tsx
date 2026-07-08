@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Pedigree from "@/components/Pedigree";
@@ -9,7 +10,18 @@ import Company from "@/components/Company";
 import Briefing from "@/components/Briefing";
 import Footer from "@/components/Footer";
 
-const Index = () => (
+const Index = () => {
+  // complete #section jumps when arriving from another route (e.g. /privacy)
+  useEffect(() => {
+    const { hash } = window.location;
+    if (!hash) return;
+    const t = setTimeout(() => {
+      document.querySelector(hash)?.scrollIntoView({ behavior: "instant" as ScrollBehavior });
+    }, 60);
+    return () => clearTimeout(t);
+  }, []);
+
+  return (
   <div className="min-h-screen bg-background">
     <a
       href="#main"
@@ -30,6 +42,7 @@ const Index = () => (
     </main>
     <Footer />
   </div>
-);
+  );
+};
 
 export default Index;
