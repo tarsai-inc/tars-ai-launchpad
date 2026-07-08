@@ -635,7 +635,7 @@ const DepotViz = () => {
               <span className="text-dim">One command surface.</span>
             </>
           }
-          lede="This is how TARS sees a depot: a controlled system, not a parking lot. Vehicles move through charge, detail, inspection, and staging on system-issued tasks — each routed to a certified technician, every step verified before dispatch."
+          lede="This is how TARS sees a depot: a controlled system, not a parking lot. Vehicles move through charge, cleaning, inspection, and staging on system-issued tasks — each routed to a certified technician, every step verified before dispatch."
         />
 
         <div className="corner-ticks border border-line bg-ink-deep">
@@ -656,7 +656,7 @@ const DepotViz = () => {
                 <canvas
                   ref={canvasRef}
                   role="img"
-                  aria-label="Animated schematic of a TARS-run depot: autonomous vehicles moving through intake, charging, detailing, inspection, and staging bays before dispatch"
+                  aria-label="Animated schematic of a TARS-run depot: autonomous vehicles moving through intake, charging, cleaning, inspection, and staging bays before dispatch"
                   className="block w-full"
                 />
               </div>
